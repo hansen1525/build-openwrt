@@ -33,7 +33,7 @@ on:
 
 #点☆Star触发开始编译
   watch:
-    types: started
+#    types: started
 
 
 env:
@@ -44,7 +44,7 @@ env:
 
 jobs: 
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     name: 编译 ${{matrix.target}}
@@ -75,7 +75,7 @@ jobs:
         echo "::set-env name=SERVERCHAN_SCKEY::${SERVERCHAN_SCKEY}"
     
     - name: 微信通知
-      if: env.SERVERCHAN_SCKEY == 'true'
+      if: env.SERVERCHAN_SCKEY == 'false'
       uses: emon100/Action-Serverchan@master
       with:
         SCKEY: ${{ secrets.SCKEY }}
